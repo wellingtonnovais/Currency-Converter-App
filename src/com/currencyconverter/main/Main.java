@@ -1,6 +1,6 @@
 package com.currencyconverter.main;
 
-import com.currencyconverter.menu.ChoiceEvaluation;
+import com.currencyconverter.choice.ChoiceValue;
 import com.currencyconverter.menu.Menu;
 import com.currencyconverter.requestapi.RequestApi;
 
@@ -8,24 +8,31 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int i = 10;
-        Menu menu = new Menu();
-        while (i != 0) {
+        int decision = 0;
+
+        while (decision != 10) {
+
+            Menu menu = new Menu();
             System.out.println(menu.showMenu());
 
             Scanner scanner = new Scanner(System.in);
-            i = scanner.nextInt();
+            decision = scanner.nextInt();
 
-            Scanner scanner1 = new Scanner(System.in);
-            System.out.println("Qual valor você quer converter? ");
-            int valui = scanner1.nextInt();
+            if ( decision != 10 && decision <= 9) {
 
-            if (i != 0) {
-                RequestApi requestApi = new RequestApi(i, valui);
+                Scanner scanner1 = new Scanner(System.in);
+                ChoiceValue choiceValue = new ChoiceValue();
+                System.out.println(choiceValue.howMoneyRequest(decision));
+                double value = scanner1.nextDouble();
+
+                RequestApi requestApi = new RequestApi(decision, value);
                 requestApi.callApi();
-            } else {
+            } else if (decision == 10) {
                 break;
+            }else {
+                System.out.println("Opção inválida, escolha uma das opções do menu:");
             }
+            decision = 0;
         }
     }
 }

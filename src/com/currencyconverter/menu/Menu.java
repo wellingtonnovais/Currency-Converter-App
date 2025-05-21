@@ -1,9 +1,7 @@
 package com.currencyconverter.menu;
 
 public class Menu {
-
-    public String showMenu() {
-        String menu = """
+    String menu = """
                 
                 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 $        BEM-VINDO(A) AO CONVERSOR DE MOEDAS!       $
@@ -18,11 +16,11 @@ public class Menu {
                 $ Digite [7] para converter YEN/JPY para DOLAR/USD  $
                 $ Digite [8] para converter YEN/JPY para EURO/EUR   $
                 $ Digite [9] para converter YEN/JPY para LIBRA/GBP  $
-                $ Digite [0] para SAIR                              $
+                $ Digite [10] para SAIR                             $
                 $                                                   $
                 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-                
                 """;
+    public String showMenu() {
         return menu;
     }
 }
