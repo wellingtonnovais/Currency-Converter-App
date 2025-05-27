@@ -19,9 +19,23 @@ public class ChoiceValue {
             case 7:
                 return "Quantos yens você quer converter para dolar?";
             case 8:
-                return "Quantos yens você quer converter para euro?";
+                return "Quantos dolares você quer converter para yen?";
             case 9:
-                return "Quantos yens você quer converter para libra?";
+                return "Quantos pesos argentino você quer converter para dolar?";
+            case 10:
+                return "Quantos dolares você quer converter para peso argentinno?";
+            case 11:
+                return "Quantos pesos colombiano você quer converter para dolar?";
+            case 12:
+                return "Quantos dolares você quer converter para peso colombiano?";
+            case 13:
+                return "Quantos bolivianos você quer converter para dolar?";
+            case 14:
+                return "Quantos dolares você quer converter para boliviano?";
+            case 15:
+                return "Quantos pesos chileno você quer converter para dolar?";
+            case 16:
+                return "Quantos dolares você quer converter para peso chileno?";
             default:
                 return "";
         }

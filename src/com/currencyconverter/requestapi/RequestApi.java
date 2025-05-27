@@ -12,29 +12,32 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RequestApi {
-private int option;
-private double valueChoice;
+    private String fullUrl;
+    private double valueChoice;
 
-    public RequestApi(int option, double valueChoice) {
-        this.option = option;
+    public RequestApi(String fullUrl, double valueChoice) {
+        this.fullUrl = fullUrl;
         this.valueChoice = valueChoice;
     }
 
-    public int getOption() {
-        return option;
+    public RequestApi(int option, double valueChoice) {
+        this.valueChoice = valueChoice;
+
+        ChoiceEvaluation choiceEvaluation = new ChoiceEvaluation();
+        this.fullUrl = choiceEvaluation.choiceNumber(option, valueChoice);
     }
 
-    public double getValueChoice() {
-        return valueChoice;
-    }
+    public double getValueChoice() { return valueChoice; }
+
     Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
-    public void callApi() {
 
+    public String callApi() {
         try {
-            ChoiceEvaluation choiceEvaluation = new ChoiceEvaluation();
-            String url = choiceEvaluation.choiceNumber(getOption(), getValueChoice());
+
+            String url = this.fullUrl;
+
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
@@ -44,14 +47,20 @@ private double valueChoice;
             String jason = response.body();
 
             HandlingApiResponse handlingApiResponse = gson.fromJson(jason, HandlingApiResponse.class);
-            System.out.println(handlingApiResponse);
 
-        } catch (NumberFormatException | InterruptedException e) {
-            throw new RuntimeException(e);
+            String code1 = handlingApiResponse.baseCode();
+            String code2 = handlingApiResponse.targetCode();
+            double amountResult = handlingApiResponse.conversionResult();
+
+            String result = "O valor de " + getValueChoice() + " " + code1 + " convertido para --> " + code2 + " resulta em um total de: | " + amountResult + " " + code2 + " |";
+
+            return result;
+
+        } catch (IOException | InterruptedException e) {
+            return "Erro de conexão ou interrupção: " + e.getMessage();
         } catch (RuntimeException e) {
-            System.out.println("Aconteceu um erro: " + e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            return "Erro de execução: " + e.getMessage() + ". URL usada: " + this.fullUrl;
         }
     }
 }

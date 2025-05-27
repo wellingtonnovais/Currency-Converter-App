@@ -1,34 +1,56 @@
 package com.currencyconverter.choice;
 
-public class ChoiceEvaluation {
-    private String url = "https://v6.exchangerate-api.com/v6/537af6ee7f0d0cc83a1b6c87/pair/";
+import com.currencyconverter.exchange.MoneyExchange;
+import com.currencyconverter.requestapi.self.SelfUrl;
 
-    public String getUrl() {
-        return url;
+public class ChoiceEvaluation extends MoneyExchange {
+    private String firstPartUrl = "https://v6.exchangerate-api.com/v6/537af6ee7f0d0cc83a1b6c87/pair/";
+
+    public String getFirstPartUrl() {
+        return firstPartUrl;
     }
 
     public String choiceNumber(int choicingCurrency, double valueForConverter) {
         switch (choicingCurrency) {
             case 1:
-                return getUrl() + "BRL/USD/" + valueForConverter;
+                return getFirstPartUrl() + "BRL/USD/" + valueForConverter;
             case 2:
-                return getUrl() + "USD/BRL/" + valueForConverter;
+                return getFirstPartUrl() + "USD/BRL/" + valueForConverter;
             case 3:
-                return getUrl() + "BRL/EUR/" + valueForConverter;
+                return getFirstPartUrl() + "BRL/EUR/" + valueForConverter;
             case 4:
-                return getUrl() + "EUR/BRL/" + valueForConverter;
+                return getFirstPartUrl() + "EUR/BRL/" + valueForConverter;
             case 5:
-                return getUrl() + "GBP/BRL/" + valueForConverter;
+                return getFirstPartUrl() + "GBP/BRL/" + valueForConverter;
             case 6:
-                return getUrl() + "BRL/GBP/" + valueForConverter;
+                return getFirstPartUrl() + "BRL/GBP/" + valueForConverter;
             case 7:
-                return getUrl() + "JPY/USD/" + valueForConverter;
+                return getFirstPartUrl() + "JPY/USD/" + valueForConverter;
             case 8:
-                return getUrl() + "JPY/EUR/" + valueForConverter;
+                return getFirstPartUrl() + "USD/JPY/" + valueForConverter;
             case 9:
-                return getUrl() + "JPY/GBP/" + valueForConverter;
+                return getFirstPartUrl() + "ARS/USD/" + valueForConverter;
+            case 10:
+                return getFirstPartUrl() + "USD/ARS/" + valueForConverter;
+            case 11:
+                return getFirstPartUrl() + "COP/USD/" + valueForConverter;
+            case 12:
+                return getFirstPartUrl() + "USD/COP/" + valueForConverter;
+            case 13:
+                return getFirstPartUrl() + "BOB/USD/" + valueForConverter;
+            case 14:
+                return getFirstPartUrl() + "USD/BOB/" + valueForConverter;
+            case 15:
+                return getFirstPartUrl() + "CLP/USD/" + valueForConverter;
+            case 16:
+                return getFirstPartUrl() + "USD/CLP/" + valueForConverter;
             default:
-                return "";
+                return "URL_PADRAO_OU_ERRO";
         }
+    }
+
+    public String choiceNumberForCustom(String currency1, String currency2, double valueForConverter) {
+        String customPairPart = SelfUrl.getPairUrlPart(currency1, currency2);
+        return getFirstPartUrl() + customPairPart + valueForConverter;
     }
 }
