@@ -56,11 +56,11 @@ Para dúvidas, sugestões ou colaborações, sinta-se à vontade para entrar em 
 Wellington Novais 
 📸 Sobre o Autor
 <p align="center">
-<img src="https://raw.githubusercontent.com/wellingtonnovais/currency-converter/main/profile_photo.png" alt="Wellington Novais" width="200"/>
+<img src="photo_2025-05-27_18-28-17.jpg" alt="Wellington Novais" width="200"/>
 <br>
 <em>Desenvolvido com paixão por Wellington Novais.</em>
 </p>
 📝 Licença
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está licenciado sob a Licença MIT.
 
 ---
